@@ -13,7 +13,7 @@ WHERE discontinued = 1
 
 -- 4. Удалить из products товары, снятые с продажи (discontinued = 1)
 -- Для 4-го пункта может потребоваться удаление ограничения, связанного с foreign_key. Подумайте, как это можно решить, чтобы связь с таблицей order_details все же осталась.
-Delete from order_details
+SELECT DISTINCT product_id from order_details
 where EXISTS (SELECT 1 FROM products_disc
-			 WHERE order_details.product_id.product_id = products_disc.product_id);
+			 WHERE order_details.product_id = products_disc.product_id);
 DELETE FROM products WHERE discontinued = 1
